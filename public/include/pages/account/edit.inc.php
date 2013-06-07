@@ -14,7 +14,8 @@ if ( ! $user->checkPin($_SESSION['USERDATA']['id'], $_POST['authPin']) && $_POST
   switch ($_POST['do']) {
   case 'cashOut':
     $continue = true;
-    $dBalance = $transaction->getBalance($_SESSION['USERDATA']['id']);
+    $aBalance = $transaction->getBalance($_SESSION['USERDATA']['id']);
+    $dBalance = $aBalance['confirmed'];
     $sCoinAddress = $user->getCoinAddress($_SESSION['USERDATA']['id']);
     // Ensure we can cover the potential transaction fee of 0.1 LTC with the balance
     if ($dBalance > 0.1) {
